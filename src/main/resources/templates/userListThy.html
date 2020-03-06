@@ -55,9 +55,9 @@
         <th>size</th>
     </tr>
     <tr th:each="user,var: ${list}">
-        <td th:text="${user.userId}"></td>
-        <td th:text="${user.userName}"></td>
-        <td th:text="${user.userAge}"></td>
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.age}"></td>
         <td th:text="${var.index}"></td>
         <td th:text="${var.size}"></td>
     </tr>
@@ -67,12 +67,12 @@
     <tr>
         <th>id</th>
         <th>value</th>
-        <th>userName</th>
+        <th>name</th>
     </tr>
     <tr th:each="user: ${map}">
         <td th:each="entry:${user}" th:text="${entry.key}"></td>
         <td th:each="entry:${user}" th:text="${entry.value}"></td>
-        <td th:each="entry:${user}" th:text="${entry.value.userName}"></td>
+        <td th:each="entry:${user}" th:text="${entry.value.name}"></td>
     </tr>
 </table>
 

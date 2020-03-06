@@ -2,38 +2,39 @@ package com.yyan.pojo;
 
 public class User {
 
-    private String userName;
-    private Integer userId;
-    private Integer userAge;
+    private String name;
+    private Integer id;
+    private Integer age;
 
-    public String getUserName() {
-        return userName;
+
+    public String getName() {
+        return name;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public Integer getUserAge() {
-        return userAge;
+    public Integer getAge() {
+        return age;
     }
 
-    public void setUserAge(Integer userAge) {
-        this.userAge = userAge;
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
-    public User(String userName, Integer userId, Integer userAge) {
-        this.userName = userName;
-        this.userId = userId;
-        this.userAge = userAge;
+    public User(String name, Integer id, Integer age) {
+        this.name = name;
+        this.id = id;
+        this.age = age;
     }
 
     public User() {
