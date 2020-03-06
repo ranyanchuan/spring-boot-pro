@@ -8,6 +8,8 @@
 </head>
 <body>
 
+<div>springboot 整合 jsp</div>
+
 <table border="1" align="center" width="50%">
     <tr>
         <th>id</th>
