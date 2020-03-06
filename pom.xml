@@ -18,9 +18,12 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <!--jdk 版本号-->
+
     <properties>
+        <!--jdk 版本号-->
         <java.version>1.8</java.version>
+        <!--thymeleaf 版本号-->
+        <!--<thymeleaf.version>3.0.2.RELEASE</thymeleaf.version>-->
     </properties>
 
     <dependencies>
@@ -47,22 +50,28 @@
             </exclusions>
         </dependency>
 
-        <!-- jsp jstl-->
+        <!-- jsp 视图 jstl-->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
         </dependency>
-        <!-- jsp jasper-->
+        <!-- jsp 视图 jasper-->
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>
             <scope>provided</scope>
         </dependency>
 
-        <!--freemaker 启动器的坐标-->
+        <!--freemaker 视图启动器的坐标-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-freemarker</artifactId>
+        </dependency>
+
+        <!--thymeleaf 视图启动器的坐标-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 
 

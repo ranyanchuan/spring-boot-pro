@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<meta>
+<meta charset="UTF-8"/>
+<title>springboot 整合 thymeleaf</title>
+<script type="text/javascript" th:inline="none"></script>
+</head>
+<body>
+
+<!--变量输出与字符串操作-->
+<div th:text="hello_thymeleaf"></div>
+<div th:text="${msg}"></div>
+<input type="text" th:value="${'th:value'}"/>
+<hr>
+
+
+<!--字符串处理-->
+<div th:text="${#strings.isEmpty(msg)}"></div>
+<!--包含-->
+<div th:text="${#strings.contains(msg,'springboot')}"></div>
+<div th:text="${#strings.contains(msg,'springboot2')}"></div>
+<!--以什么开头-->
+<div th:text="${#strings.startsWith(msg,'s')}"></div>
+<!--以什么结尾-->
+<div th:text="${#strings.endsWith(msg,'s')}"></div>
+<!--字符串的长度-->
+<div th:text="${#strings.length(msg)}"></div>
+<!--字符串截取-->
+<div th:text="${#strings.substring(msg,0)}"></div>
+
+<!--日期格式处理-->
+<div th:text="${#dates.format(date,'yyyy-MM-dd')}"></div>
+<div th:text="${#dates.year(date)}"></div>
+<div th:text="${#dates.month(date)}"></div>
+<div th:text="${#dates.day(date)}"></div>
+
+<!--条件判断-->
+<div th:if="${gender}=='男'">男</div>
+<div th:if="${gender}=='女'">女</div>
+
+<div th:switch="${gender}">
+    <div th:case="${'男'}">男</div>
+    <div th:case="${'女'}">女</div>
+</div>
+
+<!--迭代遍历-->
+
+<table border="1" align="center" width="50%">
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>age</th>
+        <th>index</th>
+        <th>size</th>
+    </tr>
+    <tr th:each="user,var: ${list}">
+        <td th:text="${user.userId}"></td>
+        <td th:text="${user.userName}"></td>
+        <td th:text="${user.userAge}"></td>
+        <td th:text="${var.index}"></td>
+        <td th:text="${var.size}"></td>
+    </tr>
+</table>
+
+<table border="1" align="center" width="50%">
+    <tr>
+        <th>id</th>
+        <th>value</th>
+        <th>userName</th>
+    </tr>
+    <tr th:each="user: ${map}">
+        <td th:each="entry:${user}" th:text="${entry.key}"></td>
+        <td th:each="entry:${user}" th:text="${entry.value}"></td>
+        <td th:each="entry:${user}" th:text="${entry.value.userName}"></td>
+    </tr>
+</table>
+
+
+<!--域对象操作-->
+<div th:text="${#httpServletRequest.getAttribute('req')}"></div>
+<!--<div th:text="${#session.getSessionContext('sess')}"></div>-->
+<!--<div th:text="${#}"></div>-->
+
+
+<!--URL 表达式-->
+
+<a th:href="@{http://www.baidu.com}">绝对路径</a>
+<a href="http://www.baidu.com">绝对路径</a>
+<hr>
+<a th:href="@{/showUser/jsp}">相对路径</a>
+
+<a th:href="@{/showUser(id=1)}">相对路径</a>
+
+</body>
+</html>
