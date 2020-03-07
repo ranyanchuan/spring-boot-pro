@@ -93,16 +93,32 @@
             <version>1.1.16</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <!--依赖只在本项目中存在-->
+            <optional>true</optional>
+        </dependency>
+
 
     </dependencies>
 
-    <!--打包-->
+    <!--spring boot 插件 开发态用-->
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <!--热部署 必须使用命令启动  spring-boot:run 不推荐 -->
+                <!--<dependencies>-->
+                    <!--<dependency>-->
+                        <!--<groupId>org.springframework</groupId>-->
+                        <!--<artifactId>springloaded</artifactId>-->
+                    <!--</dependency>-->
+                <!--</dependencies>-->
+
             </plugin>
+
         </plugins>
     </build>
 

@@ -28,7 +28,7 @@ public class ExceptionController {
     @RequestMapping("/two")
     @ResponseBody
     public String exceptionAdvice() {
-       // int a = 10 / 0;
+//        int a = 10 / 0;
         return "ok";
     }
 
