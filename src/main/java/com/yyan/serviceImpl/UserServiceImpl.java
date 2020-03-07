@@ -58,5 +58,10 @@ public class UserServiceImpl implements UserService {
         userDao.deleteUser(id);
     }
 
+    public String testUser() {
+//        int a=10/0;
+        return "succeess";
+    }
+
 
 }
