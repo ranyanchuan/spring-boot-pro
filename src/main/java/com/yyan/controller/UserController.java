@@ -6,6 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -22,12 +27,43 @@ public class UserController {
     }
 
     /**
-     *
+     * 添加用户
      */
-    @RequestMapping("/addUser")
+    @RequestMapping("/add")
     public String addUser(User user) {
-
         this.userService.addUser(user);
+        return "success";
+    }
+
+    /**
+     * 查询所有用户
+     */
+
+    @RequestMapping("/getAll")
+    @ResponseBody
+    public List<User> getAll() {
+        return this.userService.getAll();
+    }
+
+
+    /**
+     * 查询所有用户
+     */
+
+    @RequestMapping("/query")
+    @ResponseBody
+    public User queryInfo(Integer id) {
+        return this.userService.getUserById(id);
+    }
+
+    /**
+     * 查询所有用户
+     */
+
+    @RequestMapping("/update")
+    @ResponseBody
+    public String update(User user) {
+        this.userService.updateUser(user);
         return "success";
     }
 
