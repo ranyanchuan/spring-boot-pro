@@ -67,5 +67,16 @@ public class UserController {
         return "success";
     }
 
+    /**
+     * 删除用户
+     */
+
+    @RequestMapping("/delete")
+    @ResponseBody
+    public String delete(Integer id) {
+        this.userService.deleteUser(id);
+        return "success";
+    }
+
 
 }

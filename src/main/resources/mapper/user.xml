@@ -21,5 +21,10 @@
         update user set name=#{name},age=#{age} where id=#{id};
     </update>
 
+    <!-- 删除用户-->
+    <delete id="deleteUser" parameterType="com.yyan.pojo.User">
+        delete from user where id=#{id};
+    </delete>
+
 
 </mapper>
