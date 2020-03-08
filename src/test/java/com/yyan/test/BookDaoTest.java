@@ -2,6 +2,7 @@ package com.yyan.test;
 
 import com.yyan.App;
 import com.yyan.dao.BookDao;
+import com.yyan.dao.BookJpaCrudRepository;
 import com.yyan.dao.BookJpaRepository;
 import com.yyan.dao.BookJpaRepositoryQuery;
 import com.yyan.pojo.Book;
@@ -26,6 +27,10 @@ public class BookDaoTest {
     private BookJpaRepository bookJpaRepository;
     @Autowired
     private BookJpaRepositoryQuery bookJpaRepositoryQuery;
+
+    @Autowired
+    private BookJpaCrudRepository bookJpaCrudRepository;
+
 
     @Test
     public void testAddBook() {
@@ -72,4 +77,17 @@ public class BookDaoTest {
     public void testUpdateByTitleUseHQL() {
         bookJpaRepositoryQuery.updateByTitleUseHQL("javas", 1);
     }
+
+
+    @Test
+    public void testCurdSave() {
+
+        Book book=new Book();
+        book.setTitle("android");
+        book.setNum(20);
+
+        bookJpaCrudRepository.save(book);
+        System.out.println("save testCurdByTitleUseHQL");
+    }
+
 }
