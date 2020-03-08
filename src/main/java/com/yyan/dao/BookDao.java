@@ -19,9 +19,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *   主要提供了分页和排序操作
  *
  * 4、JpaRepository  接口
- *    继承 Repository
+ *    继承 PageAndSortingRepository
  *
  * 5、JpaSpecificationExecutor  接口
+ *   改接口主要提供了多条件查询的支持，编辑可以在查询中添加分页和排序
+ *
  *
  */
 

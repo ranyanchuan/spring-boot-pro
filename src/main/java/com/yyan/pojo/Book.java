@@ -17,6 +17,19 @@ public class Book {
     @Column(name="num") // 表的列名叫 title
     private Integer num;
 
+
+    @ManyToOne(cascade = CascadeType.PERSIST) // 一朵关系  book 是多方
+    @JoinColumn(name="studentId") // 外键
+    private Student student;
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -47,6 +60,7 @@ public class Book {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", num=" + num +
+                ", student=" + student +
                 '}';
     }
 }
