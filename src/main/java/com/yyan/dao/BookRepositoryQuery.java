@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * repository @query 查询
  */
-public interface BookJpaRepositoryQuery extends Repository<Book, Integer> {
+public interface BookRepositoryQuery extends Repository<Book, Integer> {
 
     // 没有验证成功
     // @Query("from book where title= ? 1")

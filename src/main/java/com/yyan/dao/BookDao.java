@@ -10,13 +10,20 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * 1、Repository  接口
  *    提供了方法名称命名查询方式
  *    提供了基于 @query 注解查询与更新
+ *
  * 2、CrudRepository  接口
+ *    继承 Repository
+ *
  * 3、PageAndSortingRepository  接口
+ *   继承了 CrudRepository
+ *   主要提供了分页和排序操作
+ *
  * 4、JpaRepository  接口
+ *    继承 Repository
+ *
  * 5、JpaSpecificationExecutor  接口
  *
  */
-
 
 
 public interface BookDao extends JpaRepository<Book, Integer> {

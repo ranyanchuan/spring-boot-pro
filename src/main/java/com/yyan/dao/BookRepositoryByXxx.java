@@ -12,7 +12,7 @@ import java.util.List;
  * 提供了基于 @query 注解查询与更新
  */
 
-public interface BookJpaRepository extends Repository<Book, Integer> {
+public interface BookRepositoryByXxx extends Repository<Book, Integer> {
 
     /**
      * 通过方法名称查询 严格要求 方法名称遵守驼峰命名    findBy+属性名称(首字母大小)+ 查询条件(首字母大小)

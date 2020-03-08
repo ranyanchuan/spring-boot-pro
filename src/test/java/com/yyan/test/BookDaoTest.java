@@ -1,16 +1,16 @@
 package com.yyan.test;
 
 import com.yyan.App;
-import com.yyan.dao.BookDao;
-import com.yyan.dao.BookJpaCrudRepository;
-import com.yyan.dao.BookJpaRepository;
-import com.yyan.dao.BookJpaRepositoryQuery;
+import com.yyan.dao.*;
 import com.yyan.pojo.Book;
-import com.yyan.serviceImpl.UserServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,12 +24,15 @@ public class BookDaoTest {
     @Autowired
     private BookDao bookDao;
     @Autowired
-    private BookJpaRepository bookJpaRepository;
+    private BookRepositoryByXxx bookJpaRepository;
     @Autowired
-    private BookJpaRepositoryQuery bookJpaRepositoryQuery;
+    private BookRepositoryQuery bookJpaRepositoryQuery;
 
     @Autowired
-    private BookJpaCrudRepository bookJpaCrudRepository;
+    private BookCrudRepository bookCrudRepository;
+
+    @Autowired
+    private BookPageAndSortingRepository bookPageAndSortingRepository;
 
 
     @Test
@@ -40,6 +43,10 @@ public class BookDaoTest {
         bookDao.save(book);
     }
 
+    /**
+     * Repository 默认 查询测试
+     */
+
     @Test
     public void testFindByTitle() {
 
@@ -47,18 +54,26 @@ public class BookDaoTest {
         System.out.println("list " + list.toString());
     }
 
-
+    /**
+     * Repository and查询测试
+     */
     @Test
     public void testFindByTitleAndNum() {
         List<Book> list = bookJpaRepository.findByTitleAndNum("java", 10);
         System.out.println("list and " + list.toString());
     }
 
+
     @Test
     public void testFindByTitleOrNum() {
         List<Book> list = bookJpaRepository.findByTitleOrNum("java", 11);
         System.out.println("list or " + list.toString());
     }
+
+
+    /**
+     * @Query 查询测试
+     */
 
     @Test
     public void testQueryByTitleUseHQL() {
@@ -68,8 +83,11 @@ public class BookDaoTest {
 
 
     /**
+     * @Query 修改测试
+     * <p>
+     * <p>
      * 老版本 @Test 与  @Transactional 在一起会自动回滚
-     * @Rollback(false)  取消回滚
+     * @Rollback(false) 取消回滚
      */
 
     @Test
@@ -79,25 +97,90 @@ public class BookDaoTest {
     }
 
 
+    /**
+     * CrudRepository 保存测试
+     */
     @Test
     public void testCurdSave() {
 
-        Book book=new Book();
+        Book book = new Book();
         book.setTitle("android");
         book.setNum(20);
         book.setId(1);
 
-        bookJpaCrudRepository.save(book);
+        bookCrudRepository.save(book);
         System.out.println("save testCurdByTitleUseHQL");
     }
 
 
+    /**
+     * CrudRepository 删除测试
+     */
 
     @Test
     public void testCurdDelete() {
 
-        bookJpaCrudRepository.deleteById(4);
+        bookCrudRepository.deleteById(4);
         System.out.println("deleteById");
+    }
+
+
+    /**
+     * BookPageAndSortingRepository 排序测试
+     */
+
+    @Test
+    public void testBookSortingRepository() {
+        // order 对象定义排序规则
+        Sort.Order order = new Sort.Order(Sort.Direction.DESC, "id");
+        // Sort 对象封装排序
+        Sort sort = new Sort(order);
+        List<Book> list = (List<Book>) bookPageAndSortingRepository.findAll(sort);
+        System.out.println("list " + list.toString());
+    }
+
+
+    /**
+     * BookPageAndSortingRepository 分页测试
+     */
+
+    @Test
+    public void testBookPageRepository() {
+        // Pageable  封装分页参数，当前页、每一页的条数，当前页是从0开始
+
+
+        Pageable pageTable = new PageRequest(0, 2);
+
+        Page<Book> page = bookPageAndSortingRepository.findAll(pageTable);
+
+        System.out.println("totalItem " + page.getTotalElements());
+        System.out.println("totalPage " + page.getTotalPages());
+        System.out.println("list " + page.getContent().toString());
+
+    }
+
+
+    /**
+     * 排序+分页
+     */
+    @Test
+    public void testBookSortAndPageRepository() {
+        // Pageable  封装分页参数，当前页、每一页的条数，当前页是从0开始
+
+        // order 对象定义排序规则
+        Sort.Order order = new Sort.Order(Sort.Direction.DESC, "id");
+        // Sort 对象封装排序
+        Sort sort = new Sort(order);
+
+        // 添加分页信息和排序对象
+        Pageable pageTable = new PageRequest(0, 2, sort);
+
+        Page<Book> page = bookPageAndSortingRepository.findAll(pageTable);
+
+        System.out.println("totalItem " + page.getTotalElements());
+        System.out.println("totalPage " + page.getTotalPages());
+        System.out.println("list " + page.getContent().toString());
+
     }
 
 
