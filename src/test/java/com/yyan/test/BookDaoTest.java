@@ -85,9 +85,20 @@ public class BookDaoTest {
         Book book=new Book();
         book.setTitle("android");
         book.setNum(20);
+        book.setId(1);
 
         bookJpaCrudRepository.save(book);
         System.out.println("save testCurdByTitleUseHQL");
     }
+
+
+
+    @Test
+    public void testCurdDelete() {
+
+        bookJpaCrudRepository.deleteById(4);
+        System.out.println("deleteById");
+    }
+
 
 }
