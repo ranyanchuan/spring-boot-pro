@@ -22,30 +22,20 @@ public class StudentTest {
     @Autowired
     private BookJpaRepository bookJpaRepository;
 
+
+
+
+
     @Test
-    public void testSaveBookAndStudent() {
+    public void studentActionMenu() {
 
-        // 创建 book 多
-        Book book = new Book();
-        book.setNum(44);
-        book.setTitle("ios");
 
-        // 创建 student 一
 
-        Student student = new Student();
-        student.setName("xiaoming");
-
-        // 管理关系
-        student.getBook().add(book);
-        book.setStudent(student);
-
-        // 保存
-        bookJpaRepository.save(book);
 
     }
 
     /**
-     *  查询，多方
+     * 查询，多方 查看学生信息和学生的菜单信息
      */
 
     @Test
@@ -54,9 +44,13 @@ public class StudentTest {
         Book findOne = bookJpaRepository.findById(5).get();
         System.out.println("findOne" + findOne.toString());
         Student student = findOne.getStudent();
-        System.out.println("student"+student.getName());
+        System.out.println("student" + student.getName());
 
 
     }
+
+
+
+
 
 }
