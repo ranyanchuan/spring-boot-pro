@@ -3,8 +3,9 @@ package com.yyan.pojo;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.*;
+import java.io.Serializable;
 
-public class User {
+public class User implements Serializable {
 
 
     // @NotBlank(message = "用户名不能为空") // 非空校验 去掉首尾空格
@@ -60,5 +61,15 @@ public class User {
     }
 
     public User() {
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                ", age=" + age +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

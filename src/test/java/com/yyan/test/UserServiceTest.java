@@ -1,6 +1,7 @@
 package com.yyan.test;
 
 import com.yyan.App;
+import com.yyan.pojo.User;
 import com.yyan.serviceImpl.UserServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,11 +20,26 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class UserServiceTest {
 
     @Autowired
-    private UserServiceImpl user;
+    private UserServiceImpl userService;
 
     @Test
     public void testAddUser() {
-       String string= user.testUser();
-        System.out.println("string "+string);
+        String string = userService.testUser();
+        System.out.println("string " + string);
     }
+
+
+    @Test
+    public void eHFindUserById() {
+
+        System.out.println("=============");
+        User user = userService.getUserById(2);
+        User user1 = userService.getUserById(2);
+        System.out.println("user"+user.toString());
+        System.out.println("user1"+user1.toString());
+
+    }
+
+
+
 }

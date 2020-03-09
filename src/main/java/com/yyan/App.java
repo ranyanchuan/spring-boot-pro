@@ -9,12 +9,14 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 
 
 // springboot 启动类
 @SpringBootApplication
 @ServletComponentScan // 在springboot 启动是会扫描@WebServlet,并将该类示例
+@EnableCaching  // 开启 ehcache 缓存策略
 public class App {
 
     public static void main(String[] args) {

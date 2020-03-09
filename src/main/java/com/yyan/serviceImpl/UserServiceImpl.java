@@ -3,10 +3,14 @@ package com.yyan.serviceImpl;
 import com.yyan.dao.UserDao;
 import com.yyan.pojo.User;
 import com.yyan.service.UserService;
+import org.hibernate.annotations.Cache;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 @Service
@@ -58,9 +62,54 @@ public class UserServiceImpl implements UserService {
         userDao.deleteUser(id);
     }
 
+
     public String testUser() {
-//        int a=10/0;
-        return "succeess";
+        // int a=10/0;
+        return "success";
+    }
+
+
+    /**
+     * 缓存查询所有用户
+     *
+     * @return
+     */
+
+    @Override
+    public List<User> eHFindUserAll() {
+        return userDao.getAllUser();
+    }
+
+    /**
+     * 缓存查询通过 id
+     *
+     * @return
+     */
+    @Override
+    @Cacheable(value = "user")  // 开启缓存 可以自定义走缓存
+    public User eHFindUserById(Integer id) {
+        return userDao.getUserById(id);
+    }
+
+    /**
+     * 缓存分页查询通过
+     *
+     * @return
+     */
+    @Override
+    @Cacheable(value = "user")  // 开启缓存 可以自定义走缓存
+    public Page<User> eHFindUserByPage(Pageable page) {
+        return null;
+    }
+
+    /**
+     * 缓存保存
+     *
+     * @return
+     */
+    @Override
+    public void eHSave(User user) {
+//        userDao.save(user);
     }
 
 

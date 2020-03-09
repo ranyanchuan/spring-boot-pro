@@ -108,6 +108,18 @@
         </dependency>
 
 
+        <!--springboot boot缓存支持是驱动器-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+        <!--Ehcache 坐标 需要在resources下配置 ehcache.xml 文件-->
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+        </dependency>
+
+
     </dependencies>
 
     <!--spring boot 插件 开发态用-->
