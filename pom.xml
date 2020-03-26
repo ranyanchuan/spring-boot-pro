@@ -37,6 +37,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
+        <!--springboot 邮件发送-->
+        <!-- 邮件操作 文件操作-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+
         <!--springboot 启动器 测试-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
