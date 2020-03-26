@@ -35,11 +35,11 @@ public class MailController {
     public MailVo sendMail() {
 
         MailVo mailVo = new MailVo();
-//        mailVo.setFrom("xt20110702@163.com");
         mailVo.setTo("ranych@yonyou.com");
         mailVo.setSubject("主题测试");
         mailVo.setText("邮件内容测试");
 
         return mailService.sendMail(mailVo);//发送邮件和附件
+
     }
 }
