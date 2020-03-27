@@ -20,7 +20,6 @@ public class UserController {
     @Autowired
     private UserServiceImpl userService;
 
-    // 页面跳转
 
     /**
      * @param page
