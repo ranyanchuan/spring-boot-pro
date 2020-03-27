@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -39,8 +40,9 @@ public class UserController {
      */
     @RequestMapping("/add")
     @ResponseBody
-    public String addUser(@Valid User user, BindingResult result) {
+    public String addUser(@Valid @RequestBody User user, BindingResult result) {
 
+        System.out.println("xxxxxx"+user.getName()+result.hasErrors());
         if (!result.hasErrors()) { // 验证数据是否通过
             this.userService.addUser(user);
             return "success";

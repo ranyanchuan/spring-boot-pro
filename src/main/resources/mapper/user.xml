@@ -4,8 +4,8 @@
 
     <!--添加用户-->
     <insert id="insertUser" parameterType="com.yyan.pojo.User">
-        insert into user(age, name,email)
-            values(#{age}, #{name},#{email})
+        insert into user(id, name,password,status,email,create_time,update_time)
+            values(#{id}, #{name},#{password},#{status},#{email},#{createTime},#{updateTime})
     </insert>
 
     <!--查询所有用户-->

@@ -3,7 +3,6 @@ package com.yyan.serviceImpl;
 import com.yyan.dao.UserDao;
 import com.yyan.pojo.User;
 import com.yyan.service.UserService;
-import org.hibernate.annotations.Cache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
@@ -11,7 +10,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.awt.print.Pageable;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Transactional // 添加事务
@@ -27,7 +28,15 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public void addUser(User user) {
+
+        // todo 查看当前邮箱是否存在
+
+        String userId = UUID.randomUUID().toString();
+        user.setId(userId);
+        user.setUpdateTime(new Date());
+        user.setCreateTime(new Date());
         this.userDao.insertUser(user);
+
     }
 
     /**
