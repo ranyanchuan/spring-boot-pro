@@ -27,6 +27,7 @@ public class RoleController {
     @ResponseBody
     public String addUser(@Valid @RequestBody Role role, BindingResult result) {
 
+
         if (!result.hasErrors()) { // 验证数据是否通过
             this.roleService.addRole(role);
             return "success";
