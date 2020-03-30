@@ -13,6 +13,17 @@
         select id,title,create_time as createTime,update_time as updateTime from role where id=#{id};
     </select>
 
+    <!-- 通过id 获取角色-->
+    <select id="getAllRoleByField" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+        select count(id) from role WHERE 1=1
+        <if test="title != null">
+            and title=#{title}
+        </if>
+        <if test="id != null">
+            and id=#{id}
+        </if>
+    </select>
+
     <!-- 通过分页查询角色-->
     <select id="getAllRole" parameterType="java.util.HashMap" resultType="com.yyan.pojo.Role">
         select
@@ -31,7 +42,7 @@
 
 
     <!--查询分页总条数-->
-    <select id="selectCount" resultType="java.lang.Integer">
+    <select id="selectCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
         select count(id) from role WHERE 1=1
         <if test="title != null">
             and title like '%${title}%'
@@ -41,5 +52,15 @@
         </if>
     </select>
 
+
+    <!-- 删除角色-->
+    <delete id="deleteRole" parameterType="com.yyan.pojo.Role">
+        delete from role where id=#{id};
+    </delete>
+
+    <!-- 更新角色-->
+    <update id="updateRole" parameterType="com.yyan.pojo.Role">
+        update role set title=#{title},update_time=#{updateTime} where id=#{id};
+    </update>
 
 </mapper>

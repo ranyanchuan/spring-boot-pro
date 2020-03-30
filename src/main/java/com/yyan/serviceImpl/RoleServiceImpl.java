@@ -18,14 +18,24 @@ public class RoleServiceImpl implements RoleService {
 
 
     @Override
-    public String addRole(Role role) {
-        // todo 查看当前角色 title 是否存在
+    public Role addRole(Role role) throws Exception{
+
+        // 查看当前角色 title 是否存在
+        Map<String,Object> queryMap=new HashMap<>();
+        queryMap.put("title",role.getTitle());
+        Integer count =this.roleDao.getAllRoleByField(queryMap);
+
+        if(count>0){
+            // 抛异常
+            throw new Exception("角色名称已经存在");
+        }
+
         String roleId = UUID.randomUUID().toString();
         role.setId(roleId);
         role.setUpdateTime(new Date());
         role.setCreateTime(new Date());
         this.roleDao.insertRole(role);
-        return roleId;
+        return this.roleDao.getRoleById(roleId);
     }
 
     @Override
@@ -51,12 +61,13 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public void updateRole(Role user) {
-
+    public void updateRole(Role role) {
+        role.setUpdateTime(new Date());
+        this.roleDao.updateRole(role);
     }
 
     @Override
     public void deleteRole(String id) {
-
+        this.roleDao.deleteRole(id);
     }
 }

@@ -19,11 +19,16 @@ public class BaseController {
         return map;
     }
 
+    // 成功
+    public Map<String, Object> buildSuccess() {
+        return this.buildSuccess(null);
+    }
+
     // 失败
     public Map<String, Object> buildError(String message) {
         Map map = new HashMap();
         ResultCodeEnum resultCode = ResultCodeEnum.FAILED;
-        map.put("code",  Integer.parseInt(resultCode.getCode()));
+        map.put("code", Integer.parseInt(resultCode.getCode()));
         if (message == null || message.isEmpty()) {
             map.put("info", resultCode.getMessage());
         } else {

@@ -7,7 +7,7 @@ import java.util.Map;
 
 public interface RoleService {
 
-    String addRole(Role role); // 添加角色
+    Role addRole(Role role) throws Exception; // 添加角色
 
     Map<String, Object> getAllRole(Map map); // 按条件角色
 

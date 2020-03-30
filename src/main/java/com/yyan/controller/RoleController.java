@@ -31,9 +31,9 @@ public class RoleController extends BaseController {
     @ResponseBody
     public Map<String, Object> addUser(@Valid @RequestBody Role role, BindingResult result) {
         try {
-            String uuid = this.roleService.addRole(role);
+            Role data = this.roleService.addRole(role);
             // todo 查询本地添加的
-            return this.buildSuccess(uuid);
+            return this.buildSuccess(data);
         } catch (Exception exp) {
             return this.buildError(exp.getMessage());
         }
@@ -48,8 +48,8 @@ public class RoleController extends BaseController {
     @ResponseBody
     public Map<String, Object> queryInfo(@RequestParam String id) {
         try {
-            Role role = this.roleService.getRoleById(id);
-            return this.buildSuccess(role);
+            Role data = this.roleService.getRoleById(id);
+            return this.buildSuccess(data);
         } catch (Exception exp) {
             return this.buildError(exp.getMessage());
         }
@@ -63,15 +63,47 @@ public class RoleController extends BaseController {
     @RequestMapping("/queryList")
     @ResponseBody
     public Map<String, Object> queryList(@RequestBody Map param) {
-
         try {
-            Map<String, Object> map = this.roleService.getAllRole(param);
-            return this.buildSuccess(map);
+            Map<String, Object> data = this.roleService.getAllRole(param);
+            return this.buildSuccess(data);
         } catch (Exception exp) {
             return this.buildError(exp.getMessage());
         }
 
     }
+
+    /**
+     * 删除角色通过id
+     */
+
+    @RequestMapping("/delete")
+    @ResponseBody
+    public Map<String, Object> delete(@RequestParam String id) {
+        try {
+            this.roleService.deleteRole(id);
+            return this.buildSuccess();
+        } catch (Exception exp) {
+            return this.buildError(exp.getMessage());
+        }
+    }
+
+
+    /**
+     * 查询角色通过id
+     */
+
+    @RequestMapping("/update")
+    @ResponseBody
+    public Map<String, Object> update(@RequestBody Role role) {
+        try {
+            this.roleService.updateRole(role);
+            return this.buildSuccess(role);
+        } catch (Exception exp) {
+            return this.buildError(exp.getMessage());
+        }
+
+    }
+
 
 
 }

@@ -11,6 +11,8 @@ public interface RoleDao {
 
     void insertRole(Role role); // 添加角色
 
+    Integer getAllRoleByField(Map map); // 按字段查询
+
     List<Role> getAllRole(Map map); // 查询角色
 
     Integer selectCount(Map map); // 查询条数
