@@ -13,6 +13,8 @@ public interface RoleDao {
 
     List<Role> getAllRole(Map map); // 查询角色
 
+    Integer selectCount(Map map); // 查询条数
+
     Role getRoleById(String id); // 通过用户id 查询角色
 
     void updateRole(Role role); // 更新角色

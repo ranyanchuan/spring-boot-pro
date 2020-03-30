@@ -13,7 +13,7 @@ public class BaseController {
     public Map<String, Object> buildSuccess(Object data) {
         Map<String, Object> map = new HashMap();
         ResultCodeEnum resultCode = ResultCodeEnum.SUCCESS;
-        map.put("code", resultCode.getCode());
+        map.put("code", Integer.parseInt(resultCode.getCode()));
         map.put("info", resultCode.getMessage());
         map.put("data", data);
         return map;
@@ -23,7 +23,7 @@ public class BaseController {
     public Map<String, Object> buildError(String message) {
         Map map = new HashMap();
         ResultCodeEnum resultCode = ResultCodeEnum.FAILED;
-        map.put("code", resultCode.getCode());
+        map.put("code",  Integer.parseInt(resultCode.getCode()));
         if (message == null || message.isEmpty()) {
             map.put("info", resultCode.getMessage());
         } else {

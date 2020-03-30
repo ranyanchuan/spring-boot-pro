@@ -19,14 +19,26 @@
         id,
         title,
         create_time as createTime,
-        update_time as updateTime from role  WHERE 1=1
-        <if test="title != null" >
+        update_time as updateTime from role WHERE 1=1
+        <if test="title != null">
             and title like '%${title}%'
         </if>
-        <if test="id != null" >
+        <if test="id != null">
             and id like '%${id}%'
         </if>
         limit ${pageIndex*size},${(pageIndex+1)*size};
+    </select>
+
+
+    <!--查询分页总条数-->
+    <select id="selectCount" resultType="java.lang.Integer">
+        select count(id) from role WHERE 1=1
+        <if test="title != null">
+            and title like '%${title}%'
+        </if>
+        <if test="id != null">
+            and id like '%${id}%'
+        </if>
     </select>
 
 

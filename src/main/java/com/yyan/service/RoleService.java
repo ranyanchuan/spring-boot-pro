@@ -7,10 +7,11 @@ import java.util.Map;
 
 public interface RoleService {
 
-
     String addRole(Role role); // 添加角色
 
-    List<Role> getAllRole(Map map); // 按条件角色
+    Map<String, Object> getAllRole(Map map); // 按条件角色
+
+    Integer selectCount(Map map); // 查询条数
 
     Role getRoleById(String id);  // 按 id 获取角色
 

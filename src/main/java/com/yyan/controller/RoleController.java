@@ -62,17 +62,16 @@ public class RoleController extends BaseController {
 
     @RequestMapping("/queryList")
     @ResponseBody
-    public Map<String, Object> queryList(@RequestBody Map map) {
+    public Map<String, Object> queryList(@RequestBody Map param) {
 
         try {
-            List<Role> role = this.roleService.getAllRole(map);
-            return this.buildSuccess(role);
+            Map<String, Object> map = this.roleService.getAllRole(param);
+            return this.buildSuccess(map);
         } catch (Exception exp) {
             return this.buildError(exp.getMessage());
         }
 
     }
-
 
 
 }
