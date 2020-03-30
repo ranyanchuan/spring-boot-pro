@@ -8,9 +8,26 @@
             values(#{id}, #{title},#{createTime},#{updateTime})
     </insert>
 
-    <!--修改角色-->
+    <!-- 通过id 获取角色-->
+    <select id="getRoleById" resultType="com.yyan.pojo.Role">
+        select id,title,create_time as createTime,update_time as updateTime from role where id=#{id};
+    </select>
 
-
+    <!-- 通过分页查询角色-->
+    <select id="getAllRole" parameterType="java.util.HashMap" resultType="com.yyan.pojo.Role">
+        select
+        id,
+        title,
+        create_time as createTime,
+        update_time as updateTime from role  WHERE 1=1
+        <if test="title != null" >
+            and title like '%${title}%'
+        </if>
+        <if test="id != null" >
+            and id like '%${id}%'
+        </if>
+        limit ${pageIndex*size},${(pageIndex+1)*size};
+    </select>
 
 
 </mapper>
