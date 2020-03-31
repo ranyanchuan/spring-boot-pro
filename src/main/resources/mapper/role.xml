@@ -52,7 +52,6 @@
         </if>
     </select>
 
-
     <!-- 删除角色-->
     <delete id="deleteRole" parameterType="com.yyan.pojo.Role">
         delete from role where id=#{id};
@@ -62,5 +61,6 @@
     <update id="updateRole" parameterType="com.yyan.pojo.Role">
         update role set title=#{title},update_time=#{updateTime} where id=#{id};
     </update>
+
 
 </mapper>

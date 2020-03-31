@@ -1,6 +1,7 @@
 package com.yyan.serviceImpl;
 
 import com.yyan.dao.UserDao;
+import com.yyan.pojo.Role;
 import com.yyan.pojo.User;
 import com.yyan.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.awt.print.Pageable;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @Transactional // 添加事务
@@ -21,105 +20,66 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
 
-    /**
-     * 添加用户
-     *
-     * @param user
-     */
     @Override
-    public void addUser(User user) {
-
-        // todo 查看当前邮箱是否存在
-
-        String userId = UUID.randomUUID().toString();
-        user.setId(userId);
+    public User addUser(User user) {
+        String id = UUID.randomUUID().toString();
+        user.setId(id);
         user.setUpdateTime(new Date());
         user.setCreateTime(new Date());
         this.userDao.insertUser(user);
-
+        return this.userDao.getUserById(id);
     }
 
-    /**
-     * @return
-     */
     @Override
-    public List<User> getAll() {
-        return userDao.getAllUser();
+    public Map<String, Object> getAllUser(Map param) {
+        Map<String, Object> map = new HashMap<>();
+        List<User> data = this.userDao.getAllUser(param);
+        Integer count = this.userDao.selectCount(param);
+        map.put("data", data);
+        map.put("pageIndex", param.get("pageIndex"));
+        map.put("size", param.get("size"));
+        map.put("count", count);
+        return map;
     }
 
-    /**
-     * @return
-     */
     @Override
-    public User getUserById(Integer id) {
-        return userDao.getUserById(id);
+    public Integer selectCount(Map map) {
+        return this.userDao.selectCount(map);
     }
 
-    /**
-     * @return
-     */
+    @Override
+    public User getUserById(String id) {
+        return this.userDao.getUserById(id);
+    }
+
     @Override
     public void updateUser(User user) {
-        userDao.updateUser(user);
+        user.setUpdateTime(new Date());
+        this.userDao.updateUser(user);
     }
 
-    /**
-     * @return
-     */
     @Override
-    public void deleteUser(Integer id) {
-        userDao.deleteUser(id);
+    public void deleteUser(String id) {
+        this.userDao.deleteUser(id);
     }
-
-
-    public String testUser() {
-        // int a=10/0;
-        return "success";
-    }
-
-
-    /**
-     * 缓存查询所有用户
-     *
-     * @return
-     */
 
     @Override
     public List<User> eHFindUserAll() {
-        return userDao.getAllUser();
+        return null;
     }
 
-    /**
-     * 缓存查询通过 id
-     *
-     * @return
-     */
     @Override
-    @Cacheable(value = "user")  // 开启缓存 可以自定义走缓存
     public User eHFindUserById(Integer id) {
-        return userDao.getUserById(id);
+        return null;
     }
 
-    /**
-     * 缓存分页查询通过
-     *
-     * @return
-     */
     @Override
-    @Cacheable(value = "user")  // 开启缓存 可以自定义走缓存
     public Page<User> eHFindUserByPage(Pageable page) {
         return null;
     }
 
-    /**
-     * 缓存保存
-     *
-     * @return
-     */
     @Override
     public void eHSave(User user) {
-//        userDao.save(user);
+
     }
-
-
 }

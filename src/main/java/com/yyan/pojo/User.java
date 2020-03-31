@@ -28,7 +28,6 @@ public class User implements Serializable {
     @Email  // 验证邮箱不合法 支持表达式
     private String email;
 
-
     public String getId() {
         return id;
     }
@@ -84,7 +83,6 @@ public class User implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-
 
 
 

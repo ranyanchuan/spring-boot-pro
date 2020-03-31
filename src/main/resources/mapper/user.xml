@@ -10,21 +10,55 @@
 
     <!--查询所有用户-->
     <select id="getAllUser" resultType="com.yyan.pojo.User">
-        select id,name,age,email from user;
+        select
+        id,
+        name,
+        status,
+        email,
+        create_time as createTime,
+        update_time as updateTime from user WHERE 1=1
+        <if test="id != null">
+            and id= #{id}
+        </if>
+        <if test="email != null">
+            and email=#{email}
+        </if>
+        <if test="status != null">
+            and status=#{status}
+        </if>
+        <if test="name != null">
+            and title like '%${name}%'
+        </if>
+        limit ${pageIndex*size},${(pageIndex+1)*size};
     </select>
+
     <!--查询所有用户-->
     <select id="getUserById" resultType="com.yyan.pojo.User">
-        select id,name,age,email from user where id=#{id};
+      select
+        id,
+        name,
+        status,
+        email,
+        password,
+        create_time as createTime,
+        update_time as updateTime
+        from user where id=#{id};
     </select>
+
     <!-- 更新用户-->
     <update id="updateUser" parameterType="com.yyan.pojo.User">
-        update user set name=#{name},age=#{age},email=#{email} where id=#{id};
+        update user set name=#{name},status=#{status},email=#{email},update_time=#{updateTime}  where id=#{id};
+    </update>
+
+
+    <!-- 更新用户密码-->
+    <update id="updateUserPass" parameterType="com.yyan.pojo.User">
+        update user set name=#{name},passwrod=#{passwrod},update_time=#{updateTime}  where id=#{id};
     </update>
 
     <!-- 删除用户-->
     <delete id="deleteUser" parameterType="com.yyan.pojo.User">
         delete from user where id=#{id};
     </delete>
-
 
 </mapper>

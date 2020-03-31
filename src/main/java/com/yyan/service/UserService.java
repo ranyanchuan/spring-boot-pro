@@ -5,18 +5,22 @@ import org.springframework.data.domain.Page;
 
 import java.awt.print.Pageable;
 import java.util.List;
+import java.util.Map;
 
 public interface UserService {
 
-    void addUser(User user);
+    User addUser(User user);
 
-    List<User> getAll();
+    Map<String, Object> getAllUser(Map map); // 按条件角色
 
-    User getUserById(Integer id);
+    Integer selectCount(Map map); // 查询条数
 
-    void updateUser(User user);
+    User getUserById(String id); // 通过 id 查询用户
 
-    void deleteUser(Integer id); // 删除用户
+    void updateUser(User user);  // 更新用户
+
+    void deleteUser(String id); // 删除用户
+
 
     // ==== ehcache 缓存测试 ===
 

@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -29,10 +27,9 @@ public class RoleController extends BaseController {
      */
     @RequestMapping("/add")
     @ResponseBody
-    public Map<String, Object> addUser(@Valid @RequestBody Role role, BindingResult result) {
+    public Map<String, Object> addRole(@Valid @RequestBody Role role, BindingResult result) {
         try {
             Role data = this.roleService.addRole(role);
-            // todo 查询本地添加的
             return this.buildSuccess(data);
         } catch (Exception exp) {
             return this.buildError(exp.getMessage());
@@ -43,7 +40,6 @@ public class RoleController extends BaseController {
     /**
      * 查询角色通过id
      */
-
     @RequestMapping("/query")
     @ResponseBody
     public Map<String, Object> queryInfo(@RequestParam String id) {
@@ -59,7 +55,6 @@ public class RoleController extends BaseController {
     /**
      * 查询角色通过id
      */
-
     @RequestMapping("/queryList")
     @ResponseBody
     public Map<String, Object> queryList(@RequestBody Map param) {
@@ -75,7 +70,6 @@ public class RoleController extends BaseController {
     /**
      * 删除角色通过id
      */
-
     @RequestMapping("/delete")
     @ResponseBody
     public Map<String, Object> delete(@RequestParam String id) {
@@ -91,7 +85,6 @@ public class RoleController extends BaseController {
     /**
      * 查询角色通过id
      */
-
     @RequestMapping("/update")
     @ResponseBody
     public Map<String, Object> update(@RequestBody Role role) {
@@ -103,7 +96,6 @@ public class RoleController extends BaseController {
         }
 
     }
-
 
 
 }

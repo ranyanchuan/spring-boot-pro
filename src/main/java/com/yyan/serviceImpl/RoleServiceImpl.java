@@ -12,7 +12,6 @@ import java.util.*;
 //@Transactional // 添加事务
 public class RoleServiceImpl implements RoleService {
 
-
     @Autowired
     private RoleDao roleDao;
 
