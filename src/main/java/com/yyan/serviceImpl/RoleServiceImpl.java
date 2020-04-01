@@ -23,18 +23,12 @@ public class RoleServiceImpl implements RoleService {
         Map<String,Object> queryMap=new HashMap<>();
         queryMap.put("title",role.getTitle());
         Integer count =this.roleDao.getAllRoleByField(queryMap);
-
         if(count>0){
             // 抛异常
             throw new Exception("角色名称已经存在");
         }
-
-        String roleId = UUID.randomUUID().toString();
-        role.setId(roleId);
-        role.setUpdateTime(new Date());
-        role.setCreateTime(new Date());
         this.roleDao.insertRole(role);
-        return this.roleDao.getRoleById(roleId);
+        return this.roleDao.getRoleById(role.getId());
     }
 
     @Override
@@ -61,7 +55,6 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public void updateRole(Role role) {
-        role.setUpdateTime(new Date());
         this.roleDao.updateRole(role);
     }
 
@@ -69,4 +62,5 @@ public class RoleServiceImpl implements RoleService {
     public void deleteRole(String id) {
         this.roleDao.deleteRole(id);
     }
+
 }

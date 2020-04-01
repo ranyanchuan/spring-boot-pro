@@ -4,6 +4,7 @@ import com.yyan.dao.UserDao;
 import com.yyan.pojo.Role;
 import com.yyan.pojo.User;
 import com.yyan.service.UserService;
+import com.yyan.utils.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
@@ -15,31 +16,22 @@ import java.util.*;
 
 @Service
 @Transactional // 添加事务
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends BaseServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
 
     @Override
     public User addUser(User user) {
-        String id = UUID.randomUUID().toString();
-        user.setId(id);
-        user.setUpdateTime(new Date());
-        user.setCreateTime(new Date());
         this.userDao.insertUser(user);
-        return this.userDao.getUserById(id);
+        return this.userDao.getUserById(user.getId());
     }
 
     @Override
     public Map<String, Object> getAllUser(Map param) {
-        Map<String, Object> map = new HashMap<>();
         List<User> data = this.userDao.getAllUser(param);
         Integer count = this.userDao.selectCount(param);
-        map.put("data", data);
-        map.put("pageIndex", param.get("pageIndex"));
-        map.put("size", param.get("size"));
-        map.put("count", count);
-        return map;
+        return this.queryListSuccess(data, count, param); //查询成功
     }
 
     @Override
@@ -54,7 +46,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUser(User user) {
-        user.setUpdateTime(new Date());
         this.userDao.updateUser(user);
     }
 

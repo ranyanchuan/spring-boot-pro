@@ -27,6 +27,13 @@
     </properties>
 
     <dependencies>
+
+        <!--springboot aop -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
         <!--springboot 启动器 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -126,6 +133,11 @@
             <groupId>net.sf.ehcache</groupId>
             <artifactId>ehcache</artifactId>
         </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
+
 
 
     </dependencies>
