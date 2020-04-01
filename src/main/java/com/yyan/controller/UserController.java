@@ -1,6 +1,8 @@
 package com.yyan.controller;
 
 import com.yyan.pojo.User;
+import com.yyan.pojo.UserRole;
+import com.yyan.serviceImpl.UserRoleServiceImpl;
 import com.yyan.serviceImpl.UserServiceImpl;
 import com.yyan.utils.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,8 @@ public class UserController extends BaseController {
 
     @Autowired
     private UserServiceImpl userService;
+    @Autowired
+    private UserRoleServiceImpl userRoleService;
 
 
     /**
@@ -34,6 +38,19 @@ public class UserController extends BaseController {
         }
     }
 
+    /**
+     * 添加用户角色
+     */
+    @RequestMapping("/addRole")
+    @ResponseBody
+    public Map<String, Object> addUser(@RequestBody UserRole userRole) {
+        try {
+            Map<String, Object> data = this.userRoleService.addUserRole(userRole);
+            return this.buildSuccess(data);
+        } catch (Exception exp) {
+            return this.buildError(exp.getMessage());
+        }
+    }
 
     /**
      * 查询角色通过id
@@ -47,7 +64,21 @@ public class UserController extends BaseController {
         } catch (Exception exp) {
             return this.buildError(exp.getMessage());
         }
+    }
 
+
+    /**
+     * 添加用户角色
+     */
+    @RequestMapping("/queryUserRoleList")
+    @ResponseBody
+    public Map<String, Object> queryUserRoleList(@RequestBody Map param) {
+        try {
+            Map<String, Object> data = this.userService.getQueryUserRoleList(param);
+            return this.buildSuccess(data);
+        } catch (Exception exp) {
+            return this.buildError(exp.getMessage());
+        }
     }
 
 

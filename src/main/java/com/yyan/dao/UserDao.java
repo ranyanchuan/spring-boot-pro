@@ -17,6 +17,10 @@ public interface UserDao {
 
     Integer getAllUserByField(Map map); // 按字段查询
 
+    User queryUserRole(String id); // 通过用户id 查询用户角色
+
+    List<User> queryUserRoleList(Map map); // 查询用户表中的角色
+
     User getUserById(String id); // 通过用户id 查询用户
 
     void updateUser(User user); // 更新用户

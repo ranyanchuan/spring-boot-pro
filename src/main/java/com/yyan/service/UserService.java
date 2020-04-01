@@ -21,6 +21,9 @@ public interface UserService {
 
     void deleteUser(String id); // 删除用户
 
+    Map<String, Object> queryRole(String id); // 通过用户id 查询角色
+
+    Map<String, Object> getQueryUserRoleList(Map<String, Object> map); // 通过user查询user_role
 
     // ==== ehcache 缓存测试 ===
 

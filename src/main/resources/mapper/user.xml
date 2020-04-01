@@ -8,6 +8,29 @@
             values(#{id}, #{name},#{password},#{status},#{email},#{createTime},#{updateTime})
     </insert>
 
+    <!--查询所有用户的角色-->
+    <select id="queryUserRoleList" resultType="com.yyan.pojo.User">
+        select
+        u.id as id,
+        u.name as name,
+        user_id as userId from
+        yaoyan.user u,
+        yaoyan.user_role ul WHERE 1=1
+        <if test="id != null">
+            and id= #{id}
+        </if>
+        <if test="email != null">
+            and email=#{email}
+        </if>
+        <if test="status != null">
+            and status=#{status}
+        </if>
+        <if test="name != null">
+            and title like '%${name}%'
+        </if>
+        limit ${pageIndex*size},${(pageIndex+1)*size};
+    </select>
+
     <!--查询所有用户-->
     <select id="getAllUser" resultType="com.yyan.pojo.User">
         select
@@ -31,7 +54,6 @@
         </if>
         limit ${pageIndex*size},${(pageIndex+1)*size};
     </select>
-
 
 
     <!--查询分页总条数-->
@@ -80,5 +102,6 @@
     <delete id="deleteUser" parameterType="com.yyan.pojo.User">
         delete from user where id=#{id};
     </delete>
+
 
 </mapper>

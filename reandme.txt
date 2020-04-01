@@ -1,1 +1,37 @@
 https://blog.csdn.net/u011263794/article/details/84985185  Spring Boot 中使用@DateTimeFormat和@JsonFormat注解
+
+
+//=====user=====
+
+user/add/
+user/query/
+user/queryAll/
+user/save/
+user/update/
+user/delete/
+
+
+user/login/
+user/update/pass/
+
+
+user/queryRole/   //---获取用户角色
+user/addRole/  //---获取用户角色
+user/updateRole/  //---获取用户角色
+user/deleteRole/  //---获取用户角色
+
+//=====role=====
+role/add/
+role/query/
+role/queryAll/
+role/save/
+role/update/
+role/delete/
+
+//=====menu=====
+menu/add/
+menu/query/
+menu/queryAll/
+menu/save/
+menu/update/
+menu/delete/

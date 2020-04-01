@@ -55,6 +55,19 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
     }
 
     @Override
+    public Map<String, Object> queryRole(String id) {
+
+        return null;
+    }
+
+
+    @Override
+    public Map<String, Object> getQueryUserRoleList(Map<String, Object> param) {
+        List<User> data = this.userDao.queryUserRoleList(param);
+        return this.queryListSuccess(data, 5, param); //查询成功
+    }
+
+    @Override
     public List<User> eHFindUserAll() {
         return null;
     }
