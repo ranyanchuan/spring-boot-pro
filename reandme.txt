@@ -1,37 +1,34 @@
 https://blog.csdn.net/u011263794/article/details/84985185  Spring Boot 中使用@DateTimeFormat和@JsonFormat注解
 
-
-//=====user=====
-
-user/add/
-user/query/
-user/queryAll/
-user/save/
-user/update/
-user/delete/
-
+//===用户表=====
+user/insert/       --> 按多条实现
+user/select/       --> 按多条实现
+user/update/       --> 按多条实现
+user/delete/       --> 按多条实现
 
 user/login/
-user/update/pass/
+user/pass/update/
 
+//===用户授权角色====
+user/role/select/     --> 按多条实现
+user/role/insert/     --> 按多条实现
+user/role/update/     --> 按多条实现
+user/role/delete/     --> 按多条实现
 
-user/queryRole/   //---获取用户角色
-user/addRole/  //---获取用户角色
-user/updateRole/  //---获取用户角色
-user/deleteRole/  //---获取用户角色
+//===角色表====
+role/insert/      --> 按多条实现
+role/select/      --> 按多条实现
+role/update/      --> 按多条实现
+role/delete/      --> 按多条实现
 
-//=====role=====
-role/add/
-role/query/
-role/queryAll/
-role/save/
-role/update/
-role/delete/
+//===角色授权功能====
+role/menu/select/     --> 按多条实现
+role/menu/insert/     --> 按多条实现
+role/menu/update/     --> 按多条实现
+role/menu/delete/     --> 按多条实现
 
-//=====menu=====
-menu/add/
-menu/query/
-menu/queryAll/
-menu/save/
+//===菜单表====
+menu/insert/
+menu/select/
 menu/update/
 menu/delete/

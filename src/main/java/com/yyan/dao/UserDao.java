@@ -9,6 +9,26 @@ import java.util.Map;
 @Mapper
 public interface UserDao {
 
+    /**
+     * //===用户表=====
+     * user/insert/       --> 按多条实现 添加用户
+     * user/select/       --> 按多条实现 查询用户
+     * user/update/       --> 按多条实现 更新用户
+     * user/delete/       --> 按多条实现 删除用户
+     * user/login/        --> 用户登录
+     * user/pass/update/  --> 用户修改密码
+     * //===用户授权角色====
+     * user/role/select/     --> 按多条实现 查看用户角色
+     * user/role/update/     --> 按多条实现 修改用户角色
+     */
+
+    void insertListUser(List<User> list); //批量添加用户
+
+    List<User> selectListUser(Map<String, Object> map); // 分页查询数据
+    Integer countListUser(Map<String, Object> map); // 总条数
+
+
+
     void insertUser(User user); // 添加用户
 
     List<User> getAllUser(Map map); // 查询用户
@@ -26,6 +46,5 @@ public interface UserDao {
     void updateUser(User user); // 更新用户
 
     void deleteUser(String id); // 删除用户
-
 
 }

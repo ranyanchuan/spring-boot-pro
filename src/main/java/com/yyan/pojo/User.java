@@ -21,7 +21,7 @@ public class User implements Serializable {
     @NotEmpty(message = "用户密码不能为空")
     private String password;
 
-    //    @NotEmpty(message = "用户状态")
+    // @NotEmpty(message = "用户状态")
     private String status;
 
     private Date createTime;
@@ -29,8 +29,9 @@ public class User implements Serializable {
 
     @Email  // 验证邮箱不合法 支持表达式
     private String email;
-    private List<UserRole> userRole;
 
+
+    private transient List<Role> role;
 
     public String getId() {
         return id;
@@ -88,12 +89,12 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public List<UserRole> getUserRole() {
-        return userRole;
+    public List<Role> getRole() {
+        return role;
     }
 
-    public void setUserRole(List<UserRole> userRole) {
-        this.userRole = userRole;
+    public void setRole(List<Role> role) {
+        this.role = role;
     }
 
     @Override
@@ -106,7 +107,7 @@ public class User implements Serializable {
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
                 ", email='" + email + '\'' +
-                ", userRole=" + userRole +
+                ", role=" + role +
                 '}';
     }
 }

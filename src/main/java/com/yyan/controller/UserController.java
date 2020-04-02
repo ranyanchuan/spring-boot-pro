@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -20,97 +21,127 @@ public class UserController extends BaseController {
 
     @Autowired
     private UserServiceImpl userService;
-    @Autowired
-    private UserRoleServiceImpl userRoleService;
-
 
     /**
-     * 添加用户
+     * 批量添加用户
      */
-    @RequestMapping("/add")
+    @RequestMapping("/insert")
     @ResponseBody
-    public Map<String, Object> addUser(@RequestBody User user) {
+    public Map<String, Object> insertUser(@RequestBody Map<String, Object> map) {
         try {
-            User data = this.userService.addUser(user);
-            return this.buildSuccess(data);
-        } catch (Exception exp) {
-            return this.buildError(exp.getMessage());
-        }
-    }
-
-    /**
-     * 添加用户角色
-     */
-    @RequestMapping("/addRole")
-    @ResponseBody
-    public Map<String, Object> addUser(@RequestBody UserRole userRole) {
-        try {
-            Map<String, Object> data = this.userRoleService.addUserRole(userRole);
-            return this.buildSuccess(data);
-        } catch (Exception exp) {
-            return this.buildError(exp.getMessage());
-        }
-    }
-
-    /**
-     * 查询角色通过id
-     */
-    @RequestMapping("/queryList")
-    @ResponseBody
-    public Map<String, Object> queryList(@RequestBody Map param) {
-        try {
-            Map<String, Object> data = this.userService.getAllUser(param);
-            return this.buildSuccess(data);
-        } catch (Exception exp) {
-            return this.buildError(exp.getMessage());
-        }
-    }
-
-
-    /**
-     * 添加用户角色
-     */
-    @RequestMapping("/queryUserRoleList")
-    @ResponseBody
-    public Map<String, Object> queryUserRoleList(@RequestBody Map param) {
-        try {
-            Map<String, Object> data = this.userService.getQueryUserRoleList(param);
-            return this.buildSuccess(data);
-        } catch (Exception exp) {
-            return this.buildError(exp.getMessage());
-        }
-    }
-
-
-    /**
-     * 删除角色通过id
-     */
-    @RequestMapping("/delete")
-    @ResponseBody
-    public Map<String, Object> delete(@RequestParam String id) {
-        try {
-            this.userService.deleteUser(id);
+            this.userService.insertListUser((List<User>) map.get("list"));
             return this.buildSuccess();
         } catch (Exception exp) {
             return this.buildError(exp.getMessage());
         }
     }
 
-
     /**
-     * 查询角色通过id
+     * 批量查询用户
      */
-    @RequestMapping("/update")
+    @RequestMapping("/select")
     @ResponseBody
-    public Map<String, Object> update(@RequestBody User user) {
+    public Map<String, Object> selectUser(@RequestBody Map<String, Object> map) {
+        System.out.println("00000");
         try {
-            this.userService.updateUser(user);
-            return this.buildSuccess();
+            System.out.println("00000");
+            return this.buildSuccess(this.userService.selectListUser(map));
         } catch (Exception exp) {
             return this.buildError(exp.getMessage());
         }
-
     }
+
+
+//    /**
+//     * 添加用户
+//     */
+//    @RequestMapping("/add")
+//    @ResponseBody
+//    public Map<String, Object> addUser(@RequestParam List<User> list) {
+//        try {
+//            this.userService.insertListUser(list);
+//            return this.buildSuccess();
+//        } catch (Exception exp) {
+//            return this.buildError(exp.getMessage());
+//        }
+//    }
+//
+//    /**
+//     * 添加用户角色
+//     */
+//    @RequestMapping("/addRole")
+//    @ResponseBody
+//    public Map<String, Object> addUser(@RequestBody UserRole userRole) {
+//        try {
+//            Map<String, Object> data = this.userRoleService.addUserRole(userRole);
+//            return this.buildSuccess(data);
+//        } catch (Exception exp) {
+//            return this.buildError(exp.getMessage());
+//        }
+//    }
+//
+//    /**
+//     * 查询角色通过id
+//     */
+//    @RequestMapping("/queryList")
+//    @ResponseBody
+//    public Map<String, Object> queryList(@RequestBody Map param) {
+//        try {
+//            Map<String, Object> data = this.userService.getAllUser(param);
+//            return this.buildSuccess(data);
+//        } catch (Exception exp) {
+//            return this.buildError(exp.getMessage());
+//        }
+//    }
+
+
+//    /**
+//     * 添加用户角色
+//     */
+//    @RequestMapping("/queryUserRoleList")
+//    @ResponseBody
+//    public Map<String, Object> queryUserRoleList(@RequestBody Map param) {
+//        try {
+//            Map<String, Object> data = this.userService.getQueryUserRoleList(param);
+////            BeanUtil.copyProperties(ee1, user);
+//
+//            return this.buildSuccess(data);
+//        } catch (Exception exp) {
+//            System.out.println(exp.toString());
+//            return this.buildError(exp.getMessage());
+//        }
+//    }
+//
+//
+//    /**
+//     * 删除角色通过id
+//     */
+//    @RequestMapping("/delete")
+//    @ResponseBody
+//    public Map<String, Object> delete(@RequestParam String id) {
+//        try {
+//            this.userService.deleteUser(id);
+//            return this.buildSuccess();
+//        } catch (Exception exp) {
+//            return this.buildError(exp.getMessage());
+//        }
+//    }
+//
+//
+//    /**
+//     * 查询角色通过id
+//     */
+//    @RequestMapping("/update")
+//    @ResponseBody
+//    public Map<String, Object> update(@RequestBody User user) {
+//        try {
+//            this.userService.updateUser(user);
+//            return this.buildSuccess();
+//        } catch (Exception exp) {
+//            return this.buildError(exp.getMessage());
+//        }
+//
+//    }
 
 
 }

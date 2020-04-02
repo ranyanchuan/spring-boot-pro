@@ -9,6 +9,11 @@ import java.util.Map;
 
 public interface UserService {
 
+    void insertListUser(List<User> list); //批量添加用户
+
+    Map<String, Object> selectListUser(Map map); // 查询用户信息
+
+
     User addUser(User user);
 
     Map<String, Object> getAllUser(Map map); // 按条件角色

@@ -7,6 +7,7 @@ import com.yyan.service.UserService;
 import com.yyan.utils.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cglib.beans.BeanMap;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +21,36 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
+
+    /**
+     * 批量添加用户
+     *
+     * @param list
+     */
+    @Override
+    public void insertListUser(List<User> list) {
+        this.userDao.insertListUser(list);
+    }
+
+    /**
+     * 查询用户基本信息
+     * @param map
+     * @return
+     */
+    @Override
+    public Map<String, Object> selectListUser(Map map) {
+
+        List<?> newList = this.queryListClearField(
+                userDao.selectListUser(map), // 查询数据库
+                new String[]{"password","status","role"} // 清空前端不需要的字段
+        );
+        Integer count = this.userDao.countListUser(map);
+        return this.queryListSuccess(newList, count, map); //查询成功
+    }
+
+
+
+
 
     @Override
     public User addUser(User user) {
@@ -56,15 +87,18 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 
     @Override
     public Map<String, Object> queryRole(String id) {
-
         return null;
     }
 
-
     @Override
     public Map<String, Object> getQueryUserRoleList(Map<String, Object> param) {
-        List<User> data = this.userDao.queryUserRoleList(param);
-        return this.queryListSuccess(data, 5, param); //查询成功
+
+        List<?> newList = this.queryListClearField(
+                userDao.queryUserRoleList(param), // 查询数据库
+                new String[]{"password"} // 清空前端不需要的字段
+        );
+
+        return this.queryListSuccess(newList, 5, param); //查询成功
     }
 
     @Override
@@ -87,3 +121,6 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 
     }
 }
+
+
+
