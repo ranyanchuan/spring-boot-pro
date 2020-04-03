@@ -1,13 +1,18 @@
 package com.yyan.pojo;
 
 import lombok.Data;
-
-import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Date;
 
 @Data
 public class Menu {
+
+    private String id;
+
+    private String pid;
+    private String title;
+    private String url;
+    private Date createTime;
+    private Date updateTime;
 
 
 }

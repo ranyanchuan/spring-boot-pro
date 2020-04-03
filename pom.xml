@@ -141,10 +141,11 @@
             <version>1.9.4</version>
         </dependency>
 
-        <!--java bean set get 方法-->
+        <!---->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <optional>true</optional>
         </dependency>
 
     </dependencies>

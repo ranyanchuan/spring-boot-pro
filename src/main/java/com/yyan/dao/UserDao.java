@@ -59,9 +59,6 @@ public interface UserDao {
 
 
 
-
-
-
     void insertUser(User user); // 添加用户
 
     List<User> getAllUser(Map map); // 查询用户
