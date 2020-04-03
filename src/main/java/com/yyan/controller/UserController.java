@@ -1,15 +1,12 @@
 package com.yyan.controller;
 
 import com.yyan.pojo.User;
-import com.yyan.pojo.UserRole;
-import com.yyan.serviceImpl.UserRoleServiceImpl;
 import com.yyan.serviceImpl.UserServiceImpl;
 import com.yyan.utils.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -58,6 +55,21 @@ public class UserController extends BaseController {
     public Map<String, Object> updateUser(@RequestBody Map<String, Object> map) {
         try {
             this.userService.updateListUser((List<User>) map.get("list"));
+            return this.buildSuccess();
+        } catch (Exception exp) {
+            return this.buildError(exp.getMessage());
+        }
+    }
+
+
+    /**
+     * 批量删除用户
+     */
+    @RequestMapping("/delete")
+    @ResponseBody
+    public Map<String, Object> delete(@RequestBody Map<String, Object> map) {
+        try {
+            this.userService.deleteListUser((List<User>) map.get("list"));
             return this.buildSuccess();
         } catch (Exception exp) {
             return this.buildError(exp.getMessage());

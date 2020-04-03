@@ -15,7 +15,7 @@ public interface UserService {
 
     void updateListUser(List<User> list); // 批量修改用户信息
 
-
+    void deleteListUser(List<User> list); // 批量删除用户信息
 
 
     User addUser(User user);

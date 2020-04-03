@@ -62,6 +62,17 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
         this.userDao.updateListUser(list);
     }
 
+    /**
+     * 批量删除用户基本信息
+     *
+     * @param list
+     */
+    @Override
+    @Transactional(rollbackFor = Exception.class) // 事务回滚
+    public void deleteListUser(List<User> list) {
+        this.userDao.deleteListUser(list);
+    }
+
 
     @Override
     public User addUser(User user) {

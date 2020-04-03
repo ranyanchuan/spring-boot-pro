@@ -23,7 +23,6 @@ public interface UserDao {
      */
 
 
-
     /**
      * 批量添加用户
      *
@@ -50,8 +49,13 @@ public interface UserDao {
     void updateListUser(List<User> list);
 
 
+    /**
+     * 批量删除用户基本信息
+     *
+     * @param list
+     */
 
-
+    void deleteListUser(List<User> list);
 
 
 
