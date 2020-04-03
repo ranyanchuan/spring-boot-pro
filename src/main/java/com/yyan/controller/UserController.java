@@ -42,14 +42,28 @@ public class UserController extends BaseController {
     @RequestMapping("/select")
     @ResponseBody
     public Map<String, Object> selectUser(@RequestBody Map<String, Object> map) {
-        System.out.println("00000");
         try {
-            System.out.println("00000");
             return this.buildSuccess(this.userService.selectListUser(map));
         } catch (Exception exp) {
             return this.buildError(exp.getMessage());
         }
     }
+
+
+    /**
+     * 批量修改用户
+     */
+    @RequestMapping("/update")
+    @ResponseBody
+    public Map<String, Object> updateUser(@RequestBody Map<String, Object> map) {
+        try {
+            this.userService.updateListUser((List<User>) map.get("list"));
+            return this.buildSuccess();
+        } catch (Exception exp) {
+            return this.buildError(exp.getMessage());
+        }
+    }
+
 
 
 //    /**

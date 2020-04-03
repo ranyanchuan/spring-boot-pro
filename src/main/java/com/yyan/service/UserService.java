@@ -13,6 +13,10 @@ public interface UserService {
 
     Map<String, Object> selectListUser(Map map); // 查询用户信息
 
+    void updateListUser(List<User> list); // 批量修改用户信息
+
+
+
 
     User addUser(User user);
 

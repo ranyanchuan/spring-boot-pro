@@ -34,6 +34,7 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 
     /**
      * 查询用户基本信息
+     *
      * @param map
      * @return
      */
@@ -42,14 +43,24 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 
         List<?> newList = this.queryListClearField(
                 userDao.selectListUser(map), // 查询数据库
-                new String[]{"password","status","role"} // 清空前端不需要的字段
+                new String[]{"password", "status", "role"} // 清空前端不需要的字段
         );
         Integer count = this.userDao.countListUser(map);
         return this.queryListSuccess(newList, count, map); //查询成功
     }
 
 
+    /**
+     * 批量修改用户基本信息
+     *
+     * @param list
+     */
 
+    @Override
+    @Transactional(rollbackFor = Exception.class) // 事务回滚
+    public void updateListUser(List<User> list) {
+        this.userDao.updateListUser(list);
+    }
 
 
     @Override

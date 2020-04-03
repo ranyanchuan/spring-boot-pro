@@ -22,10 +22,39 @@ public interface UserDao {
      * user/role/update/     --> 按多条实现 修改用户角色
      */
 
-    void insertListUser(List<User> list); //批量添加用户
 
+
+    /**
+     * 批量添加用户
+     *
+     * @param list
+     */
+    void insertListUser(List<User> list); //
+
+    /**
+     * 查询用户
+     *
+     * @param map
+     * @return
+     */
     List<User> selectListUser(Map<String, Object> map); // 分页查询数据
+
     Integer countListUser(Map<String, Object> map); // 总条数
+
+
+    /**
+     * 更新用户基本信息
+     *
+     * @param list
+     */
+    void updateListUser(List<User> list);
+
+
+
+
+
+
+
 
 
 
