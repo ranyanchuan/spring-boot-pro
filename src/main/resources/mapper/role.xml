@@ -76,7 +76,6 @@
         </foreach>
     </update>
 
-
     <!--批量删除 要删除角色 级联删除角色菜单表-->
     <delete id="deleteListRole" parameterType="java.util.List">
         <foreach collection="list" item="item" index="index" open="" close="" separator=";">
