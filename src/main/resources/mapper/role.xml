@@ -4,9 +4,9 @@
 
     <!--批量插入角色数据-->
     <insert id="insertListRole">
-        insert into role(id, title,create_time,update_time) values
+        insert into role(id, title,dr,create_time,update_time) values
         <foreach collection="list" item="role" separator=",">
-            (uuid(),#{role.title},now(), now())
+            (uuid(),#{role.title},'0',now(), now())
         </foreach>
     </insert>
 
@@ -22,7 +22,7 @@
     </sql>
 
     <!--分页查询数据-->
-    <select id="selectListRole" resultType="com.yyan.pojo.role">
+    <select id="selectListRole" resultType="com.yyan.pojo.Role">
         SELECT *,
         create_time as createTime,
         update_time as updateTime

@@ -10,6 +10,6 @@ public class Role {
     private String title;
     private Date createTime;
     private Date updateTime;
-    private Integer dr;
+    private String dr;
 
 }
