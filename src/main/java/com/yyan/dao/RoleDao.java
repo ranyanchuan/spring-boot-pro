@@ -1,6 +1,7 @@
 package com.yyan.dao;
 
 import com.yyan.pojo.Role;
+import com.yyan.pojo.RoleMenu;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -42,6 +43,7 @@ public interface RoleDao {
      */
 
     void deleteListRole(List<Role> list);
+
 
 
 }

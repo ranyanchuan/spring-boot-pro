@@ -1,6 +1,7 @@
 package com.yyan.service;
 
 import com.yyan.pojo.Role;
+import com.yyan.pojo.RoleMenu;
 
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,8 @@ public interface RoleService {
     void updateListRole(List<Role> list); // 批量修改角色信息
 
     void deleteListRole(List<Role> list); // 批量删除角色信息
+
+    void insertListRoleMenu(List<RoleMenu> list); // 为角色授权
 
 
 }

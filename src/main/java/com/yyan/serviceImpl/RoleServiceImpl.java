@@ -2,7 +2,9 @@ package com.yyan.serviceImpl;
 
 import com.yyan.dao.RoleDao;
 
+import com.yyan.dao.RoleMenuDao;
 import com.yyan.pojo.Role;
+import com.yyan.pojo.RoleMenu;
 import com.yyan.service.RoleService;
 import com.yyan.utils.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,8 @@ public class RoleServiceImpl extends BaseServiceImpl implements RoleService {
 
     @Autowired
     private RoleDao roleDao;
-
+    @Autowired
+    private RoleMenuDao roleMenuDao;
 
     /**
      * 批量插入角色
@@ -67,4 +70,16 @@ public class RoleServiceImpl extends BaseServiceImpl implements RoleService {
     public void deleteListRole(List<Role> list) {
         this.roleDao.deleteListRole(list);
     }
+
+
+    /**
+     * 为角色授权
+     * @param list
+     */
+    @Override
+    @Transactional
+    public void insertListRoleMenu(List<RoleMenu> list) {
+        this.roleMenuDao.insertListRoleMenu(list);
+    }
+
 }

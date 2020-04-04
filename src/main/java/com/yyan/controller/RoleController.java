@@ -1,6 +1,7 @@
 package com.yyan.controller;
 
 import com.yyan.pojo.Role;
+import com.yyan.pojo.RoleMenu;
 import com.yyan.serviceImpl.RoleServiceImpl;
 import com.yyan.utils.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,16 +16,17 @@ import java.util.Map;
 @Controller
 @RequestMapping("/role")
 public class RoleController extends BaseController {
+
+
     @Autowired
     private RoleServiceImpl roleService;
-
 
     /**
      * 批量添加角色
      */
     @RequestMapping("/insert")
     @ResponseBody
-    public Map<String, Object> insertMenu(@RequestBody Map<String, Object> map) {
+    public Map<String, Object> insertRole(@RequestBody Map<String, Object> map) {
         try {
             this.roleService.insertListRole((List<Role>) map.get("list"));
             return this.buildSuccess();
@@ -38,7 +40,7 @@ public class RoleController extends BaseController {
      */
     @RequestMapping("/select")
     @ResponseBody
-    public Map<String, Object> selectMenu(@RequestBody Map<String, Object> map) {
+    public Map<String, Object> selectRole(@RequestBody Map<String, Object> map) {
         try {
             return this.buildSuccess(this.roleService.selectListRole(map));
         } catch (Exception exp) {
@@ -52,7 +54,7 @@ public class RoleController extends BaseController {
      */
     @RequestMapping("/update")
     @ResponseBody
-    public Map<String, Object> updateMenu(@RequestBody Map<String, Object> map) {
+    public Map<String, Object> updateRole(@RequestBody Map<String, Object> map) {
         try {
             this.roleService.updateListRole((List<Role>) map.get("list"));
             return this.buildSuccess();
@@ -69,6 +71,22 @@ public class RoleController extends BaseController {
     public Map<String, Object> delete(@RequestBody Map<String, Object> map) {
         try {
             this.roleService.deleteListRole((List<Role>) map.get("list"));
+            return this.buildSuccess();
+        } catch (Exception exp) {
+            return this.buildError(exp.getMessage());
+        }
+    }
+
+
+    /**
+     * 批量添加角色菜单
+     */
+    @RequestMapping("/menu/insert")
+    @ResponseBody
+    public Map<String, Object> insertRoleMenu(@RequestBody Map<String, Object> map) {
+
+        try {
+            this.roleService.insertListRoleMenu((List<RoleMenu>) map.get("list"));
             return this.buildSuccess();
         } catch (Exception exp) {
             return this.buildError(exp.getMessage());
