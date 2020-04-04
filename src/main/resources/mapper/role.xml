@@ -13,12 +13,12 @@
     <!--批量查询角色-->
 
     <!--查询 通过用户 id 的关联用户角色表-->
-    <resultMap type="com.yyan.pojo.role" id="getRoleMenuMap">
+    <resultMap type="com.yyan.pojo.Role" id="getRoleMenuMap">
         <id property="id" column="id"/>
         <result property="title" column="title"/>
         <result property="createTime" column="createTime"/>
         <result property="updateTime" column="updateTime"/>
-        <collection property="menu" ofType="java.util.HashMap" column="list">
+        <collection property="roleMenu" ofType="java.util.HashMap" column="list">
             <id property="id" column="menuId"/>
             <result property="title" column="menuTitle"/>
         </collection>
