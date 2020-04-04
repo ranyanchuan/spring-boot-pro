@@ -10,14 +10,14 @@ import java.util.Map;
 public interface MenuDao {
 
     /**
-     * 批量添加角色
+     * 批量添加菜单
      *
      * @param list
      */
     void insertListMenu(List<Menu> list); //
 
     /**
-     * 查询角色
+     * 查询菜单
      *
      * @param map
      * @return
@@ -27,7 +27,7 @@ public interface MenuDao {
 
 
     /**
-     * 更新角色基本信息
+     * 更新菜单基本信息
      *
      * @param list
      */
@@ -35,7 +35,7 @@ public interface MenuDao {
 
 
     /**
-     * 批量删除角色基本信息
+     * 批量删除菜单基本信息
      *
      * @param list
      */

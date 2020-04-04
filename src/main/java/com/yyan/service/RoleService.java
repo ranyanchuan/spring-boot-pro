@@ -7,25 +7,13 @@ import java.util.Map;
 
 public interface RoleService {
 
-    Role addRole(Role role) throws Exception; // 添加角色
+    void insertListRole(List<Role> list); //批量添加角色
 
-    Map<String, Object> getAllRole(Map map); // 按条件角色
+    Map<String, Object> selectListRole(Map map); // 查询角色信息
 
-    Integer selectCount(Map map); // 查询条数
+    void updateListRole(List<Role> list); // 批量修改角色信息
 
-    Role getRoleById(String id);  // 按 id 获取角色
+    void deleteListRole(List<Role> list); // 批量删除角色信息
 
-    void updateRole(Role user); // 通过 id 更新用户
 
-    void deleteRole(String id); // 通过 id 删除用户
-
-//    // ==== ehcache 缓存测试 ===
-//
-//    List<User> eHFindUserAll(); // 查询所有
-//
-//    User eHFindUserById(Integer id); // 通过 id
-//
-//    Page<User> eHFindUserByPage(Pageable page); // 分页查询
-//
-//    void eHSave(User user); // 保存
 }

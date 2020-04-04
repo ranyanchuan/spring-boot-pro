@@ -2,65 +2,60 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yyan.dao.RoleDao">
 
-    <!--添加角色-->
-    <insert id="insertRole" parameterType="com.yyan.pojo.Role">
-        insert into role(id, title,create_time,update_time)
-            values(#{id}, #{title},#{createTime},#{updateTime})
+    <!--批量插入角色数据-->
+    <insert id="insertListRole">
+        insert into role(id, title,create_time,update_time) values
+        <foreach collection="list" item="role" separator=",">
+            (uuid(),#{role.title},now(), now())
+        </foreach>
     </insert>
 
-    <!-- 通过id 获取角色-->
-    <select id="getRoleById" resultType="com.yyan.pojo.Role">
-        select id,title,create_time as createTime,update_time as updateTime from role where id=#{id};
-    </select>
-
-    <!-- 通过id 获取角色-->
-    <select id="getAllRoleByField" parameterType="java.util.HashMap" resultType="java.lang.Integer">
-        select count(id) from role WHERE 1=1
-        <if test="title != null">
-            and title=#{title}
-        </if>
+    <!--批量查询角色-->
+    <!--查询条件-->
+    <sql id="selectListRoleCondition">
         <if test="id != null">
-            and id=#{id}
+            and id= #{id}
         </if>
-    </select>
+        <if test="title != null">
+            and title like '%${title}%'
+        </if>
+    </sql>
 
-    <!-- 通过分页查询角色-->
-    <select id="getAllRole" parameterType="java.util.HashMap" resultType="com.yyan.pojo.Role">
-        select
-        id,
-        title,
+    <!--分页查询数据-->
+    <select id="selectListRole" resultType="com.yyan.pojo.role">
+        SELECT *,
         create_time as createTime,
-        update_time as updateTime from role WHERE 1=1
-        <if test="title != null">
-            and title like '%${title}%'
-        </if>
-        <if test="id != null">
-            and id like '%${id}%'
-        </if>
-        limit ${pageIndex*size},${(pageIndex+1)*size};
+        update_time as updateTime
+        FROM role
+        WHERE 1=1
+        <include refid="selectListRoleCondition"/>
+        limit ${pageIndex*size},${(pageIndex+1)*size}
     </select>
-
-
     <!--查询分页总条数-->
-    <select id="selectCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+    <select id="countListRole" parameterType="java.util.HashMap" resultType="java.lang.Integer">
         select count(id) from role WHERE 1=1
-        <if test="title != null">
-            and title like '%${title}%'
-        </if>
-        <if test="id != null">
-            and id like '%${id}%'
-        </if>
+        <include refid="selectListRoleCondition"/>
     </select>
 
-    <!-- 删除角色-->
-    <delete id="deleteRole" parameterType="com.yyan.pojo.Role">
-        delete from role where id=#{id};
-    </delete>
-
-    <!-- 更新角色-->
-    <update id="updateRole" parameterType="com.yyan.pojo.Role">
-        update role set title=#{title},update_time=#{updateTime} where id=#{id};
+    <!--批量修改角色-->
+    <update id="updateListRole" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            update role
+            <set>
+                <if test="item.title!=null and item.title!=''">title=#{item.title},</if>
+                update_time=now()
+            </set>
+            where 1=1 and id = #{item.id}
+        </foreach>
     </update>
+
+
+    <!--批量删除 要删除角色 todo 级联删除角色菜单表-->
+    <delete id="deleteListRole" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            delete from role where id=#{item.id}
+        </foreach>
+    </delete>
 
 
 </mapper>

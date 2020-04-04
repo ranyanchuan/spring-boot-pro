@@ -24,6 +24,7 @@ public class MenuServiceImpl extends BaseServiceImpl implements MenuService {
     @Override
     @Transactional
     public void insertListMenu(List<Menu> list) {
+
         this.menuDao.insertListMenu(list);
     }
 
@@ -50,6 +51,7 @@ public class MenuServiceImpl extends BaseServiceImpl implements MenuService {
     @Override
     @Transactional(rollbackFor = Exception.class) // 事务回滚
     public void updateListMenu(List<Menu> list) {
+
         this.menuDao.updateListMenu(list);
     }
 
@@ -62,6 +64,7 @@ public class MenuServiceImpl extends BaseServiceImpl implements MenuService {
     @Override
     @Transactional(rollbackFor = Exception.class) // 事务回滚
     public void deleteListMenu(List<Menu> list) {
+
         this.menuDao.deleteListMenu(list);
     }
 }
