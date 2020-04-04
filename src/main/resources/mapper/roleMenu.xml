@@ -2,11 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yyan.dao.RoleMenuDao">
 
-    <!--批量插入角色菜单数据-->
-    <insert id="insertListRoleMenu">
-        insert into role_menu(id, role_id,menu_id,create_time,update_time) values
-        <foreach collection="list" item="item" separator=",">
-            (uuid(),#{item.roleId},#{item.menuId},now(), now())
+    <!--批量插入/修改角色菜单数据-->
+    <insert id="saveListRoleMenu" >
+
+        <foreach collection="list" item="item" separator=";">
+
+            <if test="item.id==null">
+                insert into role_menu(id, role_id,menu_id,create_time,update_time) values
+                (uuid(),#{item.roleId},#{item.menuId},now(), now())
+            </if>
+
+            <!--批量修改角色菜单数据-->
+            <if test="item.id!=null">
+                update role_menu
+                <set>
+                    <if test="item.roleId!=null">role_id=#{item.roleId},</if>
+                    <if test="item.menuId!=null">menu_id=#{item.menuId},</if>
+                    update_time=now()
+                </set>
+                where 1=1 and id = #{item.id}
+
+            </if>
+
         </foreach>
     </insert>
 

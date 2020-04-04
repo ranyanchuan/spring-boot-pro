@@ -83,10 +83,10 @@ public class RoleController extends BaseController {
      */
     @RequestMapping("/menu/insert")
     @ResponseBody
-    public Map<String, Object> insertRoleMenu(@RequestBody Map<String, Object> map) {
+    public Map<String, Object> saveRoleMenu(@RequestBody Map<String, Object> map) {
 
         try {
-            this.roleService.insertListRoleMenu((List<RoleMenu>) map.get("list"));
+            this.roleService.saveListRoleMenu((List<RoleMenu>) map.get("list"));
             return this.buildSuccess();
         } catch (Exception exp) {
             return this.buildError(exp.getMessage());

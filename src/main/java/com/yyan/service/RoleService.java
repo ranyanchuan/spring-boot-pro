@@ -16,7 +16,7 @@ public interface RoleService {
 
     void deleteListRole(List<Role> list); // 批量删除角色信息
 
-    void insertListRoleMenu(List<RoleMenu> list); // 为角色授权
+    void saveListRoleMenu(List<RoleMenu> list); // 为角色授权
 
 
 }

@@ -13,7 +13,7 @@ public interface RoleMenuDao {
      *
      * @param list
      */
-    void insertListRoleMenu(List<RoleMenu> list); //
+    void saveListRoleMenu(List<RoleMenu> list); //
 
 
 }

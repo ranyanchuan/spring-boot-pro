@@ -78,8 +78,8 @@ public class RoleServiceImpl extends BaseServiceImpl implements RoleService {
      */
     @Override
     @Transactional
-    public void insertListRoleMenu(List<RoleMenu> list) {
-        this.roleMenuDao.insertListRoleMenu(list);
+    public void saveListRoleMenu(List<RoleMenu> list) {
+        this.roleMenuDao.saveListRoleMenu(list);
     }
 
 }
