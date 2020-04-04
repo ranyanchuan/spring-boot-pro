@@ -28,7 +28,7 @@ public interface UserDao {
      *
      * @param list
      */
-    void insertListUser(List<User> list); //
+    void insertListUserRole(List<User> list);
 
     /**
      * 查询用户
@@ -36,18 +36,16 @@ public interface UserDao {
      * @param map
      * @return
      */
-    List<User> selectListUser(Map<String, Object> map); // 分页查询数据
+    List<User> selectListUserRole(Map<String, Object> map); // 分页查询数据
 
-    Integer countListUser(Map<String, Object> map); // 总条数
-
+    Integer countListUserRole(Map<String, Object> map); // 总条数
 
     /**
      * 更新用户基本信息
      *
      * @param list
      */
-    void updateListUser(List<User> list);
-
+    void updateListUserRole(List<User> list);
 
     /**
      * 批量删除用户基本信息
@@ -55,26 +53,7 @@ public interface UserDao {
      * @param list
      */
 
-    void deleteListUser(List<User> list);
+    void deleteListUserRole(List<User> list);
 
-
-
-    void insertUser(User user); // 添加用户
-
-    List<User> getAllUser(Map map); // 查询用户
-
-    Integer selectCount(Map map); // 查询条数
-
-    Integer getAllUserByField(Map map); // 按字段查询
-
-    User queryUserRole(String id); // 通过用户id 查询用户角色
-
-    List<User> queryUserRoleList(Map map); // 查询用户表中的角色
-
-    User getUserById(String id); // 通过用户id 查询用户
-
-    void updateUser(User user); // 更新用户
-
-    void deleteUser(String id); // 删除用户
 
 }

@@ -148,6 +148,16 @@
             <optional>true</optional>
         </dependency>
 
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.49</version>
+        </dependency>
+
+
+
+
+
     </dependencies>
 
     <!--spring boot 插件 开发态用-->

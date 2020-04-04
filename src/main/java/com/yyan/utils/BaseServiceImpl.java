@@ -1,9 +1,14 @@
 package com.yyan.utils;
 
 
+import com.yyan.pojo.Role;
 import org.springframework.cglib.beans.BeanMap;
 
+import java.beans.IntrospectionException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
+import java.util.stream.Collectors;
+
 
 public class BaseServiceImpl {
 
@@ -43,7 +48,7 @@ public class BaseServiceImpl {
         for (Object object : list) {
             Map<String, Object> map = new HashMap<>();
             String id = UUID.randomUUID().toString();
-            System.out.println("id"+id);
+            System.out.println("id" + id);
             map.put("id", id); // 添加 id
             map.put("updateTime", new Date()); // 添加创建时间
             map.put("createTime", new Date()); // 添加修改时间

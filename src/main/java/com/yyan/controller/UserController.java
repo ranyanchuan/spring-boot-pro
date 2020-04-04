@@ -22,11 +22,11 @@ public class UserController extends BaseController {
     /**
      * 批量添加用户
      */
-    @RequestMapping("/insert")
+    @RequestMapping("/role/insert")
     @ResponseBody
     public Map<String, Object> insertUser(@RequestBody Map<String, Object> map) {
         try {
-            this.userService.insertListUser((List<User>) map.get("list"));
+            this.userService.insertListUserRole((List<User>) map.get("list"));
             return this.buildSuccess();
         } catch (Exception exp) {
             return this.buildError(exp.getMessage());
@@ -36,25 +36,24 @@ public class UserController extends BaseController {
     /**
      * 批量查询用户
      */
-    @RequestMapping("/select")
+    @RequestMapping("/role/select")
     @ResponseBody
     public Map<String, Object> selectUser(@RequestBody Map<String, Object> map) {
         try {
-            return this.buildSuccess(this.userService.selectListUser(map));
+            return this.buildSuccess(this.userService.selectListUserRole(map));
         } catch (Exception exp) {
             return this.buildError(exp.getMessage());
         }
     }
 
-
     /**
      * 批量修改用户
      */
-    @RequestMapping("/update")
+    @RequestMapping("/role/update")
     @ResponseBody
     public Map<String, Object> updateUser(@RequestBody Map<String, Object> map) {
         try {
-            this.userService.updateListUser((List<User>) map.get("list"));
+            this.userService.updateListUserRole((List<User>) map.get("list"));
             return this.buildSuccess();
         } catch (Exception exp) {
             return this.buildError(exp.getMessage());
@@ -65,11 +64,11 @@ public class UserController extends BaseController {
     /**
      * 批量删除用户
      */
-    @RequestMapping("/delete")
+    @RequestMapping("/role/delete")
     @ResponseBody
     public Map<String, Object> delete(@RequestBody Map<String, Object> map) {
         try {
-            this.userService.deleteListUser((List<User>) map.get("list"));
+            this.userService.deleteListUserRole((List<User>) map.get("list"));
             return this.buildSuccess();
         } catch (Exception exp) {
             return this.buildError(exp.getMessage());
