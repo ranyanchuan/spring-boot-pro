@@ -14,4 +14,5 @@ public class Role {
     private Date updateTime;
     private String dr;
     private List<RoleMenu> RoleMenu;
+
 }

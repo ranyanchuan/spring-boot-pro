@@ -11,29 +11,51 @@
     </insert>
 
     <!--批量查询角色-->
+
+    <!--查询 通过用户 id 的关联用户角色表-->
+    <resultMap type="com.yyan.pojo.role" id="getRoleMenuMap">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="createTime" column="createTime"/>
+        <result property="updateTime" column="updateTime"/>
+        <collection property="menu" ofType="java.util.HashMap" column="list">
+            <id property="id" column="menuId"/>
+            <result property="title" column="menuTitle"/>
+        </collection>
+    </resultMap>
+
     <!--查询条件-->
     <sql id="selectListRoleCondition">
-        <if test="id != null">
-            and id= #{id}
+        <if test="u.id != null">
+            and u.id= #{id}
         </if>
         <if test="title != null">
-            and title like '%${title}%'
+            and u.title like '%${title}%'
         </if>
     </sql>
 
+
     <!--分页查询数据-->
-    <select id="selectListRole" resultType="com.yyan.pojo.Role">
-        SELECT *,
-        create_time as createTime,
-        update_time as updateTime
-        FROM role
+    <select id="selectListRole" resultMap="getRoleMenuMap">
+        SELECT
+        id as r.id,
+        title as r.title,
+        menuId as m.id,
+        menuName as m.title,
+        create_time as r.createTime,
+        update_time as r.updateTime
+        FROM (select * from role where 1=1 limit ${pageIndex*size},${(pageIndex+1)*size}) r
+        LEFT JOIN role_menu rl
+        ON r.id=rl.role_id
+        LEFT JOIN menu m
+        ON rl.menu_id=m.id
         WHERE 1=1
         <include refid="selectListRoleCondition"/>
         limit ${pageIndex*size},${(pageIndex+1)*size}
     </select>
     <!--查询分页总条数-->
     <select id="countListRole" parameterType="java.util.HashMap" resultType="java.lang.Integer">
-        select count(id) from role WHERE 1=1
+        select count(id) from role u WHERE 1=1
         <include refid="selectListRoleCondition"/>
     </select>
 
@@ -50,12 +72,12 @@
     </update>
 
 
-    <!--批量删除 要删除角色 todo 级联删除角色菜单表-->
+    <!--批量删除 要删除角色 级联删除角色菜单表-->
     <delete id="deleteListRole" parameterType="java.util.List">
         <foreach collection="list" item="item" index="index" open="" close="" separator=";">
-            delete from role where id=#{item.id}
+            delete from role where id=#{item.id};
+            delete from role_menu where role_id=#{item.id}
         </foreach>
     </delete>
-
 
 </mapper>

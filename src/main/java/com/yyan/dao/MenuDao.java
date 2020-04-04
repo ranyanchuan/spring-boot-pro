@@ -11,6 +11,7 @@ public interface MenuDao {
 
     /**
      * 批量添加菜单
+     * 批量添加菜单
      *
      * @param list
      */
