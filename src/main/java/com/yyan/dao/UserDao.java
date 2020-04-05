@@ -24,6 +24,14 @@ public interface UserDao {
 
 
     /**
+     * 插入一条数据
+     *
+     * @param user
+     */
+
+    void insertUser(User user);
+
+    /**
      * 批量添加用户
      *
      * @param list

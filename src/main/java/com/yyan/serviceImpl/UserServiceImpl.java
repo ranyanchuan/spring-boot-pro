@@ -1,20 +1,18 @@
 package com.yyan.serviceImpl;
 
-import com.yyan.dao.UserDao;
 import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.yyan.dao.UserDao;
 
-import com.yyan.pojo.Role;
+
 import com.yyan.pojo.User;
 import com.yyan.service.UserService;
 import com.yyan.utils.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.beans.BeanMap;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 @Transactional // 添加事务
@@ -30,7 +28,18 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
      */
     @Override
     public void insertListUserRole(List<User> list) {
-        this.userDao.insertListUserRole(list);
+
+        String text = JSON.toJSONString(list); //序列化
+        List<User> newList = JSON.parseArray(text, User.class);
+
+        for(User user:newList){
+            String id = UUID.randomUUID().toString(); // 主表 id
+            user.setId(id);
+            userDao.insertUser(user);
+            // todo 修改子表
+
+
+        }
     }
 
     /**
