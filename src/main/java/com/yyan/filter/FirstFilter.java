@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.*;
 import java.io.IOException;
 
+//@WebFilter(filterName = "FirstFilter", urlPatterns = "/*")
 @WebFilter(filterName = "FirstFilter", urlPatterns = "/first/servlet")
 public class FirstFilter implements Filter {
 

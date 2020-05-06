@@ -15,7 +15,6 @@ import java.util.Map;
 @RestController
 public class FileUploadController {
 
-
     /**
      * 批量文件上传
      */
